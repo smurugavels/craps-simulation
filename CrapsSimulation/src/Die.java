@@ -1,12 +1,12 @@
 
 public class Die
 {
-	private int lastRoll;
+	protected int lastRoll;
 
 	public Die()
 	{
 		// CrapsGame.println("Die's constructor called.");
-		this.roll();
+		lastRoll = getANewDieRoll();
 	}
 
 	public Die(int firstValue) // overloaded constructor: different signature
@@ -28,8 +28,13 @@ public class Die
 
 	public void roll() // note how this changes Die's state, but doesn't return anything
 	{
-		setLastRoll((int) (Math.random() * 6 + 1));
+		setLastRoll(getANewDieRoll());
 	}
+	
+	public int getANewDieRoll()
+	{
+		return (int) (Math.random() * 6 + 1);
+	}	
 
 	// try changing visibility of toString to protected...
 	@Override
@@ -44,5 +49,14 @@ public class Die
 	public String toString(int msg) // Overloading... but NOT overriding!
 	{
 		return msg + this.toString();
+	}
+	
+	/**
+	 * A static method that returns string value "Die"
+	 * 
+	 * */
+	public static String testStatic()
+	{
+		return "Die";
 	}
 }
